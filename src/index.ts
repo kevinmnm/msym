@@ -3,7 +3,7 @@ import 'mil-sym/dist/assets/renderer.css';
 // import ms from 'milsymbol';
 // export const milsymbol = ms;
 
-export * from 'milsymbol';
+export * as ms from 'milsymbol';
 export * from 'mil-sym';
 export * from './std-2525/std-2525-d';
 export * from './std-2525/std-2525-c';
