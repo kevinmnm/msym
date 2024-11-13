@@ -6,12 +6,12 @@
       "node": "^20"
    },
    "main": "dist/index.js",
-   "types": "dist/types/index.d.ts",
    "scripts": {
       "build": "tsc",
       "tsc": "tsc"
    },
    "devDependencies": {
+      "@types/css-modules": "^1.0.5",
       "prettier": "^3.3.3",
       "typescript": "~5.6.2",
       "typescript-eslint": "^8.14.0"
@@ -19,6 +19,7 @@
    "author": "Kevin Song <kevin.song@parsons.us>",
    "dependencies": {
       "mil-std-2525": "^0.2.8",
-      "mil-sym": "^0.0.1"
+      "mil-sym": "^0.0.1",
+      "milsymbol": "^2.2.0"
    }
 }

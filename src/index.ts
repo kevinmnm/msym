@@ -1,15 +1,19 @@
+import { Alphabet, DigitString } from './types/global';
+import 'mil-sym/dist/assets/renderer.css';
+
+export * from 'milsymbol';
+export * from 'mil-sym';
 export * from './std-2525/std-2525-d';
 export * from './std-2525/std-2525-c';
-import { Alphabet, DigitString } from './types/global';
 
 export enum MilSTDEnum {
    std2525c = 'std2525c',
    std2525d = 'std2525d',
 }
 
-export enum PlotCategoryEnum {
+export enum BasicAffiliationEnum {
    hostile = 'hostile',
-   friendly = 'friendly',
+   friend = 'friend',
    neutral = 'neutral',
    unknown = 'unknown',
 }
@@ -30,7 +34,7 @@ type STD2525DFieldValue<N extends number, S extends string> =
       : never; // Otherwise, it results in a compile-time error
 
 export type BasicSymbols = {
-   [key in string]: {
+   [key: string]: {
       [MilSTDEnum.std2525c]: {
          scheme: STD2525CFieldValue<Alphabet>;
          affiliation: STD2525CFieldValue<Alphabet>;
@@ -68,7 +72,7 @@ export type BasicSymbols = {
 };
 
 export const BASIC_SYMBOLS: BasicSymbols = {
-   [PlotCategoryEnum.friendly]: {
+   [BasicAffiliationEnum.friend]: {
       std2525c: {
          scheme: 'S',
          affiliation: 'F',
@@ -98,7 +102,7 @@ export const BASIC_SYMBOLS: BasicSymbols = {
          sidc: '10031000000000000000',
       },
    },
-   [PlotCategoryEnum.hostile]: {
+   [BasicAffiliationEnum.hostile]: {
       std2525c: {
          scheme: 'S',
          affiliation: 'H',
@@ -128,7 +132,7 @@ export const BASIC_SYMBOLS: BasicSymbols = {
          sidc: '10061000000000000000',
       },
    },
-   [PlotCategoryEnum.neutral]: {
+   [BasicAffiliationEnum.neutral]: {
       std2525c: {
          scheme: 'S',
          affiliation: 'N',
@@ -158,7 +162,7 @@ export const BASIC_SYMBOLS: BasicSymbols = {
          sidc: '10041000000000000000',
       },
    },
-   [PlotCategoryEnum.unknown]: {
+   [BasicAffiliationEnum.unknown]: {
       std2525c: {
          scheme: 'S',
          affiliation: 'U',

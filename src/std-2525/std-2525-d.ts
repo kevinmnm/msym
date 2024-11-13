@@ -210,10 +210,10 @@ function asArray(): STD2525Array {
 
    const frameArray = Object.values(frame).sort((a, b) => +a.code - +b.code);
    const affiliationArray = Object.values(affiliation).sort(
-      (a, b) => +a.code - +b.code
+      (a, b) => +a.code - +b.code,
    );
    const symbolsetArray = Object.values(symbolset).sort(
-      (a, b) => +a.code - +b.code
+      (a, b) => +a.code - +b.code,
    );
    const statusArray = Object.values(status).sort((a, b) => +a.code - +b.code);
 

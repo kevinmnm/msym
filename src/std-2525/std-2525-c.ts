@@ -1,4 +1,5 @@
 import { Alphabet } from '../types/global';
+import { armyc2 } from 'mil-sym';
 
 export interface BaseDeclarationValue {
    id: Uppercase<Alphabet>;
@@ -86,11 +87,111 @@ export const STD_2525_C_STATUS_DEFAULT: STD2525CStatusDefault = {
    F: { id: 'F', index: 5, name: 'Present/Full To Capacity', sidc: 'SFGF' },
 };
 
-/**
- * !! test !!
- **/
+export interface TacticalSymbolC {
+   description: string;
+   drawCategory: number;
+   maxPoints: number;
+   minPoints: number;
+   modifiers: string;
+   symbolID: string;
+}
+export const TACTICAL_SYMBOL_TABLE_C: { [key: string]: TacticalSymbolC } =
+   armyc2.c2sd.renderer.utilities.SymbolDefTable.getSymbolMap(1);
+export const TACTICAL_SYMBOL_LIST_C: TacticalSymbolC[] = Object.values(
+   TACTICAL_SYMBOL_TABLE_C,
+).sort((a, b) => a.description.localeCompare(b.symbolID));
 
-export const UNITFONTMAPPINGS = {
+export interface WarfightingSymbolC {
+   description: string;
+   drawCategory: number;
+   hierarchy: string;
+   symbolID: string;
+}
+export const WARFIGHTING_SYMBOL_TABLE_C: { [key: string]: WarfightingSymbolC } =
+   armyc2.c2sd.renderer.utilities.UnitDefTable.getSymbolMap(1);
+export const WARFIGHTING_SYMBOL_LIST_C: WarfightingSymbolC[] = Object.values(
+   WARFIGHTING_SYMBOL_TABLE_C,
+).sort((a, b) => a.description.localeCompare(b.symbolID));
+
+export function resolveSIDC_C(
+   baseID: string,
+   option?: {
+      modifier?: string;
+      affiliation?: Uppercase<Alphabet>;
+      status?: Uppercase<Alphabet>;
+   },
+) {
+   const DEFAULT_MODIFIER_CODE = '*****';
+   const DEFAULT_AFFILIATION_CODE = 'F';
+   const DEFAULT_STATUS_CODE = 'P';
+
+   const modifier = option?.modifier || DEFAULT_MODIFIER_CODE;
+   const affilication = option?.affiliation || DEFAULT_AFFILIATION_CODE;
+   const status = option?.status || DEFAULT_STATUS_CODE;
+
+   if (baseID.startsWith('W')) return baseID;
+
+   if (baseID.charAt(1) === '*' || !baseID.charAt(1)) {
+      baseID = replaceCharAt(baseID, 1, affilication);
+   }
+
+   if (baseID.charAt(3) === '*' || !baseID.charAt(3)) {
+      baseID = replaceCharAt(baseID, 3, status);
+   }
+
+   baseID = baseID.substring(0, baseID.length - modifier.length) + modifier;
+
+   return baseID;
+}
+
+function replaceCharAt(str: string, index: number, char: string) {
+   return str.slice(0, index) + char + str.slice(index + 1);
+}
+
+export function checkFontsLoaded(param?: {
+   retries?: number;
+   delay?: number;
+}): Promise<any> {
+   const maxRetries = param?.retries || 100;
+   const delay = param?.delay || 100;
+   let attempts = 0;
+
+   return new Promise((resolve, reject) => {
+      const checkFonts = () => {
+         const isLoaded =
+            armyc2.c2sd.renderer.utilities.RendererUtilities.fontsLoaded();
+
+         if (isLoaded) {
+            console.log('Fonts loaded');
+            resolve(true);
+         } else if (attempts < maxRetries) {
+            attempts++;
+            console.log(
+               `Fonts loading... Attempt ${attempts} of ${maxRetries}`,
+            );
+
+            // Sometimes font won't register until after a render attempt
+            armyc2.c2sd.renderer.MilStdIconRenderer.Render(
+               'SHAPWMSA-------',
+               {},
+            );
+
+            setTimeout(checkFonts, delay);
+         } else {
+            reject(
+               new Error('Fonts failed to load within the specified time.'),
+            );
+         }
+      };
+
+      checkFonts();
+   });
+}
+
+/**
+ * !! Any use for this? !!
+ **/
+export const UNIT_FONT_MAPPINGS_C = {
    SYMBOL: [
       {
          ID: 'S***------*****',
@@ -10316,7 +10417,7 @@ export const UNITFONTMAPPINGS = {
    ],
 };
 
-export const UNITCONSTANTS = {
+export const UNIT_CONSTANTS_C = {
    SYMBOL: [
       {
          ID: 'S***------*****',
@@ -18823,7 +18924,7 @@ export const UNITCONSTANTS = {
    ],
 };
 
-export const SINGLEPOINTMAPPINGS = {
+export const SINGLE_POINT_MAPPINGS_C = {
    SYMBOL: [
       {
          ID: 'NBCNUCFILL****X',
@@ -21257,7 +21358,7 @@ export const SINGLEPOINTMAPPINGS = {
    ],
 };
 
-export const SYMBOLCONSTANTS = {
+export const SYMBOL_CONSTANTS_C = {
    SYMBOL: [
       {
          ID: 'BS_BASIC_SHAPES',
@@ -29756,7 +29857,7 @@ export const SYMBOLCONSTANTS = {
    ],
 };
 
-export const TACTICALGRAPHICS = {
+export const TACTICAL_GRAPHICS_C = {
    SYMBOL: [
       {
          ID: 'G*T*B-----****X',
