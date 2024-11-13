@@ -1,6 +1,8 @@
 import { Alphabet, DigitString } from './types/global';
 import 'mil-sym/dist/assets/renderer.css';
+import ms from 'milsymbol';
 
+export { ms };
 export * from 'milsymbol';
 export * from 'mil-sym';
 export * from './std-2525/std-2525-d';
