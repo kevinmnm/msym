@@ -1,0 +1,35 @@
+{
+   "compilerOptions": {
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+      "module": "ESNext",
+      "skipLibCheck": true,
+      /* Bundler mode */
+      "moduleResolution": "Bundler",
+      // "allowImportingTsExtensions": true,
+      "isolatedModules": true,
+      "moduleDetection": "force",
+      /* Linting */
+      "strict": false,
+      // "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUncheckedSideEffectImports": true,
+      /* Custom */
+      "declaration": true, /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+      "declarationDir": "./dist/types", /* Specify the output directory for generated declaration files. */
+      "outDir": "./dist", /* Specify an output folder for all emitted files. */
+      "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+      "noUnusedLocals": false, /* Enable error reporting when local variables aren't read. */
+      "noImplicitAny": false, /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+      "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+      "noEmit": false, /* Disable emitting files from a compilation. */
+      // "types": [
+      //    "./src/types/global.d.ts"
+      // ], /* Specify type package names to be included without being referenced in a source file. */
+      "emitDeclarationOnly": true, /* Only output d.ts files and not the compiled JS files. */
+   },
+   "include": [
+      "src"
+   ]
+}
