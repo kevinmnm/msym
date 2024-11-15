@@ -1,6 +1,16 @@
 import { ms2525d } from 'mil-std-2525';
 
-export const STD_2525_D = ms2525d;
+interface MS2525D {
+   [key: string]: {
+      name: string;
+      symbolset: string;
+      mainIcon: any[];
+      modifier1: any[];
+      modifier2: any[];
+   };
+}
+
+export const STD_2525_D: MS2525D = ms2525d;
 
 interface STD2525DSectionValue {
    code: string;

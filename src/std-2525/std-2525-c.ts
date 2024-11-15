@@ -2,33 +2,80 @@ import { Alphabet } from '../types/global';
 import { armyc2 } from 'mil-sym';
 import { ms2525c } from 'mil-std-2525';
 
-interface MS2525C {
-   // [key: string]: {
-   //    name: string;
-   //    [key: string]: any;
-   // };
+export interface MS2525C {
    EMS: {
-      name: string;
+      name: 'EMERGENCY MANAGEMENT SYMBOLS';
+      mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
    SIGINT: {
-      name: string;
+      name: 'SIGNALS INTELLIGENCE';
+      mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
    STBOPS: {
-      name: string;
+      name: 'STABILITY OPERATIONS (SO)';
+      mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
    TACGRP: {
-      name: string;
+      name: 'TACTICAL GRAPHICS';
+      mainIcon: MS2525CMainIconItem_2;
       [key: string]: any;
    };
    WAR: {
-      name: string;
-      [key: string]: any;
+      name: 'WARFIGHTING';
+      AIRTRK: {
+         name: 'AIR';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      GRDTRK_EQT: {
+         name: 'GROUND EQUIPMENT';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      GRDTRK_INS: {
+         name: 'GROUND INSTALLATION';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      GRDTRK_UNT: {
+         name: 'GROUND UNIT';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      SBSUF: {
+         name: 'SUBSURFACE';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      SOFUNT: {
+         name: 'SPECIAL OPERATIONS FORCES (SOF)';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      SPC: {
+         name: 'SPACE';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
+      SSUF: {
+         name: 'SEA SURFACE';
+         mainIcon: MS2525CMainIconItem_1[];
+      };
    };
 }
 export const STD_2525_C: MS2525C = ms2525c;
+
+export interface MS2525CMainIconItem_1 {
+   affiliation: string;
+   battledimension: string;
+   codingscheme: string;
+   functionid: string;
+   hierarchy: string;
+   name: string;
+   names: string[];
+   remarks: string;
+   status: string;
+}
+
+export interface MS2525CMainIconItem_2 extends MS2525CMainIconItem_1 {
+   geometry: string;
+}
 
 export interface BaseDeclarationValue {
    id: Uppercase<Alphabet>;
