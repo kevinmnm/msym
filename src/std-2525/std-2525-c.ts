@@ -9,6 +9,9 @@ export enum MS2525CAliasEnum {
    TACGRP = 'TACGRP',
    WAR = 'WAR',
    AIRTRK = 'AIRTRK',
+}
+
+export enum MS2525CWarAliasEnum {
    GRDTRK_EQT = 'GRDTRK_EQT',
    GRDTRK_INS = 'GRDTRK_INS',
    GRDTRK_UNT = 'GRDTRK_UNT',
@@ -18,65 +21,63 @@ export enum MS2525CAliasEnum {
    SSUF = 'SSUF',
 }
 
+export interface MS2525CWar {
+   name: 'WARFIGHTING';
+   [MS2525CAliasEnum.AIRTRK]: {
+      name: 'AIR';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.GRDTRK_EQT]: {
+      name: 'GROUND EQUIPMENT';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.GRDTRK_INS]: {
+      name: 'GROUND INSTALLATION';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.GRDTRK_UNT]: {
+      name: 'GROUND UNIT';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.SBSUF]: {
+      name: 'SUBSURFACE';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.SOFUNT]: {
+      name: 'SPECIAL OPERATIONS FORCES (SOF)';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.SPC]: {
+      name: 'SPACE';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+   [MS2525CWarAliasEnum.SSUF]: {
+      name: 'SEA SURFACE';
+      mainIcon: MS2525CMainIconItem_1[];
+   };
+}
+
 export interface MS2525C {
    [MS2525CAliasEnum.EMS]: {
       name: 'EMERGENCY MANAGEMENT SYMBOLS';
       mainIcon: MS2525CMainIconItem_1[];
-      [key: string]: any;
    };
    [MS2525CAliasEnum.SIGINT]: {
       name: 'SIGNALS INTELLIGENCE';
       mainIcon: MS2525CMainIconItem_1[];
-      [key: string]: any;
    };
    [MS2525CAliasEnum.STBOPS]: {
       name: 'STABILITY OPERATIONS (SO)';
       mainIcon: MS2525CMainIconItem_1[];
-      [key: string]: any;
    };
    [MS2525CAliasEnum.TACGRP]: {
       name: 'TACTICAL GRAPHICS';
       mainIcon: MS2525CMainIconItem_2;
-      [key: string]: any;
    };
-   [MS2525CAliasEnum.WAR]: {
-      name: 'WARFIGHTING';
-      [MS2525CAliasEnum.AIRTRK]: {
-         name: 'AIR';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.GRDTRK_EQT]: {
-         name: 'GROUND EQUIPMENT';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.GRDTRK_INS]: {
-         name: 'GROUND INSTALLATION';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.GRDTRK_UNT]: {
-         name: 'GROUND UNIT';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.SBSUF]: {
-         name: 'SUBSURFACE';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.SOFUNT]: {
-         name: 'SPECIAL OPERATIONS FORCES (SOF)';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.SPC]: {
-         name: 'SPACE';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-      [MS2525CAliasEnum.SSUF]: {
-         name: 'SEA SURFACE';
-         mainIcon: MS2525CMainIconItem_1[];
-      };
-   };
+   [MS2525CAliasEnum.WAR]: MS2525CWar;
 }
 
-export const STD_2525_C: MS2525C = ms2525c;
+export const STD_2525_C: MS2525C = ms2525c as MS2525C;
 
 export interface MS2525CMainIconItem_1 {
    affiliation: string;
