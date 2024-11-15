@@ -1,4 +1,6 @@
-import { ms2525b, ms2525c, ms2525d } from 'mil-std-2525';
+import { ms2525d } from 'mil-std-2525';
+
+export const STD_2525_D = ms2525d;
 
 interface STD2525DSectionValue {
    code: string;
@@ -19,7 +21,7 @@ type STD2525DObject = STD2525DData;
 
 type STD2525Array = STD2525DSectionValue[][];
 
-export const STD_2525_D: STD2525DData = {
+export const STD_2525_D_DEFAULT: STD2525DData = {
    frame: {
       reality: {
          code: '0',
@@ -202,7 +204,7 @@ export const STD_2525_D: STD2525DData = {
 };
 
 function asObject(): STD2525DObject {
-   return STD_2525_D;
+   return STD_2525_D_DEFAULT;
 }
 
 function asArray(): STD2525Array {
