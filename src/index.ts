@@ -1,10 +1,7 @@
 import { Alphabet, DigitString } from './types/global';
 import 'mil-sym/dist/assets/renderer.css';
-// import ms from 'milsymbol';
-// export const milsymbol = ms;
-
-export * as ms from 'milsymbol';
-export { armyc2 } from 'mil-sym';
+import * as milsymbol from 'milsymbol';
+export const ms = (milsymbol as any).default;
 export * from './std-2525/std-2525-d';
 export * from './std-2525/std-2525-c';
 
