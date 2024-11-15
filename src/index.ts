@@ -3,6 +3,8 @@ import 'mil-sym/dist/assets/renderer.css';
 import * as milsymbol from 'milsymbol';
 export const ms = (milsymbol as any).default;
 export * from './std-2525/std-2525-d';
+import * as milsym from 'mil-sym';
+export const armyc2 = (milsym as any).default.armyc2;
 export * from './std-2525/std-2525-c';
 
 export enum MilSTDEnum {
