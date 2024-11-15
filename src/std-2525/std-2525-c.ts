@@ -2,63 +2,80 @@ import { Alphabet } from '../types/global';
 import { armyc2 } from 'mil-sym';
 import { ms2525c } from 'mil-std-2525';
 
+export enum MS2525CAliasEnum {
+   EMS = 'EMS',
+   SIGINT = 'SIGINT',
+   STBOPS = 'STBOPS',
+   TACGRP = 'TACGRP',
+   WAR = 'WAR',
+   AIRTRK = 'AIRTRK',
+   GRDTRK_EQT = 'GRDTRK_EQT',
+   GRDTRK_INS = 'GRDTRK_INS',
+   GRDTRK_UNT = 'GRDTRK_UNT',
+   SBSUF = 'SBSUF',
+   SOFUNT = 'SOFUNT',
+   SPC = 'SPC',
+   SSUF = 'SSUF',
+}
+
 export interface MS2525C {
-   EMS: {
+   [MS2525CAliasEnum.EMS]: {
       name: 'EMERGENCY MANAGEMENT SYMBOLS';
       mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
-   SIGINT: {
+   [MS2525CAliasEnum.SIGINT]: {
       name: 'SIGNALS INTELLIGENCE';
       mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
-   STBOPS: {
+   [MS2525CAliasEnum.STBOPS]: {
       name: 'STABILITY OPERATIONS (SO)';
       mainIcon: MS2525CMainIconItem_1[];
       [key: string]: any;
    };
-   TACGRP: {
+   [MS2525CAliasEnum.TACGRP]: {
       name: 'TACTICAL GRAPHICS';
       mainIcon: MS2525CMainIconItem_2;
       [key: string]: any;
    };
-   WAR: {
+   [MS2525CAliasEnum.WAR]: {
       name: 'WARFIGHTING';
-      AIRTRK: {
+      [MS2525CAliasEnum.AIRTRK]: {
          name: 'AIR';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      GRDTRK_EQT: {
+      [MS2525CAliasEnum.GRDTRK_EQT]: {
          name: 'GROUND EQUIPMENT';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      GRDTRK_INS: {
+      [MS2525CAliasEnum.GRDTRK_INS]: {
          name: 'GROUND INSTALLATION';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      GRDTRK_UNT: {
+      [MS2525CAliasEnum.GRDTRK_UNT]: {
          name: 'GROUND UNIT';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      SBSUF: {
+      [MS2525CAliasEnum.SBSUF]: {
          name: 'SUBSURFACE';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      SOFUNT: {
+      [MS2525CAliasEnum.SOFUNT]: {
          name: 'SPECIAL OPERATIONS FORCES (SOF)';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      SPC: {
+      [MS2525CAliasEnum.SPC]: {
          name: 'SPACE';
          mainIcon: MS2525CMainIconItem_1[];
       };
-      SSUF: {
+      [MS2525CAliasEnum.SSUF]: {
          name: 'SEA SURFACE';
          mainIcon: MS2525CMainIconItem_1[];
       };
    };
 }
+
 export const STD_2525_C: MS2525C = ms2525c;
 
 export interface MS2525CMainIconItem_1 {
@@ -82,7 +99,7 @@ export interface BaseDeclarationValue {
    index: number;
    name: Capitalize<string>;
    sidc: Uppercase<string>;
-   alias: string;
+   alias: MS2525CAliasEnum;
 }
 
 type CreateDefault<T, C extends Capitalize<Alphabet>> = {
@@ -101,11 +118,31 @@ export type STD2525CSchemeDefault = CreateDefault<
 
 //## 1 Position ##//
 export const STD_2525_C_SCHEME_DEFAULT: STD2525CSchemeDefault = {
-   S: { id: 'S', index: 0, name: 'Warfighting', alias: 'WAR' },
-   G: { id: 'G', index: 1, name: 'Tactical Graphics', alias: 'TACGRP' },
-   I: { id: 'I', index: 2, name: 'Signals Intelligence', alias: 'SIGINT' },
-   O: { id: 'O', index: 3, name: 'Stability Operations', alias: 'STBOPS' },
-   E: { id: 'E', index: 4, name: 'Emergency Management Symbols', alias: 'EMS' },
+   S: { id: 'S', index: 0, name: 'Warfighting', alias: MS2525CAliasEnum.WAR },
+   G: {
+      id: 'G',
+      index: 1,
+      name: 'Tactical Graphics',
+      alias: MS2525CAliasEnum.TACGRP,
+   },
+   I: {
+      id: 'I',
+      index: 2,
+      name: 'Signals Intelligence',
+      alias: MS2525CAliasEnum.SIGINT,
+   },
+   O: {
+      id: 'O',
+      index: 3,
+      name: 'Stability Operations',
+      alias: MS2525CAliasEnum.STBOPS,
+   },
+   E: {
+      id: 'E',
+      index: 4,
+      name: 'Emergency Management Symbols',
+      alias: MS2525CAliasEnum.EMS,
+   },
 };
 
 type AffiliationDefaultValue = Omit<BaseDeclarationValue, 'alias'>;
