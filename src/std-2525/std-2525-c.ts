@@ -2,7 +2,13 @@ import { Alphabet } from '../types/global';
 import { armyc2 } from 'mil-sym';
 import { ms2525c } from 'mil-std-2525';
 
-export const STD_2525_C = ms2525c;
+interface STD2525C {
+   [key: string]: {
+      name: string;
+      [key: string]: any;
+   };
+}
+export const STD_2525_C: STD2525C = ms2525c;
 
 export interface BaseDeclarationValue {
    id: Uppercase<Alphabet>;
