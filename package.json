@@ -19,7 +19,7 @@
    "author": "Kevin Song <kevinmnm2010@gmail.com>",
    "dependencies": {
       "mil-std-2525": "^0.2.8",
-      "mil-sym": "^0.3.0",
+      "mil-sym": "^0.3.1",
       "milsymbol": "^2.2.0"
    }
 }
