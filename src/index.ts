@@ -1,10 +1,10 @@
 import { Alphabet, DigitString } from './types/global';
 import 'mil-sym/dist/assets/renderer.css';
 import * as milsymbol from 'milsymbol';
-export const ms = (milsymbol as any).default;
+export const ms = (milsymbol as any).default || (milsymbol as any);
 export * from './std-2525/std-2525-d';
 import * as milsym from 'mil-sym';
-export const armyc2 = (milsym as any).default.armyc2;
+export const armyc2 = (milsym as any).default?.armyc2 || (milsym as any).armyc2;
 export * from './std-2525/std-2525-c';
 
 export enum MilSTDEnum {
